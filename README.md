@@ -1,2 +1,2 @@
-# koa-compose-store
+# composed-store
 Composed store inspired by koa-compose

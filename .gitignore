@@ -1,0 +1,10 @@
+logs
+node_modules
+dist
+types
+
+.*
+!.gitignore
+!.npmignore
+!.eslintignore
+!.eslintrc
