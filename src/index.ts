@@ -31,19 +31,19 @@ class ComposedStore<K = string, V = Buffer> extends Store<K, V> {
     this._stores.push(store);
   }
 
-  async get(ctx: IContext<K, V>) {
+  async get(ctx: IContext<K, V>, next?: () => Promise<void>) {
     let handler = this[GET];
     if (!handler) {
       const handlers = this._stores.map(store => store.get.bind(store));
       handler = this[GET] = compose(handlers);
     }
-    await handler(ctx);
+    await handler(ctx, next);
     return ctx.body;
   }
 
-  async set(ctx: IContext<K, V>, value: V) {
+  async set(key: K, value: V) {
     for (const store of this._stores) {
-      await store.set(ctx, value);
+      await store.set(key, value);
     }
   }
 

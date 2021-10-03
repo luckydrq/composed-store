@@ -4,5 +4,5 @@ interface IQuery<K> {
 
 export interface IContext<K, V> {
   query: IQuery<K>;
-  body: V;
+  body?: V;
 }
